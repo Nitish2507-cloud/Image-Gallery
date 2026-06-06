@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Modern Image Gallery Pro</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ================= LOADER ================= -->
+
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- ================= BACKGROUND ================= -->
+
+    <div class="animated-bg"></div>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <i class="fa-solid fa-camera-retro"></i>
+            GalleryPro
+        </div>
+
+        <div class="nav-actions">
+
+            <button id="themeToggle">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+        </div>
+
+    </nav>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Modern Image Gallery Pro
+            </h1>
+
+            <p>
+                Explore breathtaking collections from Nature,
+                Animals, Cities and Space.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#gallery" class="primary-btn">
+                    Explore Gallery
+                </a>
+
+                <a href="#footer" class="secondary-btn">
+                    Learn More
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= STATS ================= -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <h2 id="imageCount">12</h2>
+            <p>Total Images</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>4</h2>
+            <p>Categories</p>
+        </div>
+
+        <div class="stat-card">
+            <h2 id="favoriteCount">0</h2>
+            <p>Favorites</p>
+        </div>
+
+    </section>
+
+    <!-- ================= SEARCH ================= -->
+
+    <section class="controls">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search category...">
+
+        </div>
+
+    </section>
+
+    <!-- ================= FILTERS ================= -->
+
+    <section class="filters">
+
+        <button class="filter-btn active"
+            data-filter="all">
+            All
+        </button>
+
+        <button class="filter-btn"
+            data-filter="nature">
+            Nature
+        </button>
+
+        <button class="filter-btn"
+            data-filter="animals">
+            Animals
+        </button>
+
+        <button class="filter-btn"
+            data-filter="cities">
+            Cities
+        </button>
+
+        <button class="filter-btn"
+            data-filter="space">
+            Space
+        </button>
+
+        <button class="filter-btn"
+            data-filter="favorites">
+            ❤️ Favorites
+        </button>
+
+    </section>
+
+    <!-- ================= GALLERY ================= -->
+
+    <section id="gallery" class="gallery">
+
+        <!-- Nature -->
+
+        <div class="gallery-item nature">
+            <img src="images/nature1.jpeg" alt="Nature">
+
+            <div class="overlay">
+
+                <h3>Nature</h3>
+
+                <div class="overlay-buttons">
+
+                    <button class="favorite-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                    <button class="view-btn">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gallery-item nature">
+            <img src="images/nature2.jpeg" alt="Nature">
+
+            <div class="overlay">
+
+                <h3>Nature</h3>
+
+                <div class="overlay-buttons">
+
+                    <button class="favorite-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                    <button class="view-btn">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gallery-item nature">
+            <img src="images/nature3.jpeg" alt="Nature">
+
+            <div class="overlay">
+
+                <h3>Nature</h3>
+
+                <div class="overlay-buttons">
+
+                    <button class="favorite-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                    <button class="view-btn">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Animals -->
+
+        <div class="gallery-item animals">
+            <img src="images/animal1.jpeg" alt="Animals">
+
+            <div class="overlay">
+
+                <h3>Animals</h3>
+
+                <div class="overlay-buttons">
+
+                    <button class="favorite-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                    <button class="view-btn">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gallery-item animals">
+            <img src="images/animal2.jpeg" alt="Animals">
+
+            <div class="overlay">
+
+                <h3>Animals</h3>
+
+                <div class="overlay-buttons">
+
+                    <button class="favorite-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                    <button class="view-btn">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gallery-item animals">
+            <img src="images/animal3.jpeg" alt="Animals">
+
+            <div class="overlay">
+
+                <h3>Animals</h3>
+
+                <div class="overlay-buttons">
+
+                    <button class="favorite-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                    <button class="view-btn">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Cities -->
+
+        <div class="gallery-item cities">
+            <img src="images/city1.jpeg" alt="Cities">
+
+            <div class="overlay">
+
+                <h3>Cities</h3>
+
+                <div class="overlay-buttons">
+
+                    <button class="favorite-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                    <button class="view-btn">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gallery-item cities">
+            <img src="images/city2.jpeg" alt="Cities">
+
+            <div class="overlay">
+
+                <h3>Cities</h3>
+
+                <div class="overlay-buttons">
+
+                    <button class="favorite-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                    <button class="view-btn">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gallery-item cities">
+            <img src="images/city3.jpeg" alt="Cities">
+
+            <div class="overlay">
+
+                <h3>Cities</h3>
+
+                <div class="overlay-buttons">
+
+                    <button class="favorite-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                    <button class="view-btn">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Space -->
+
+        <div class="gallery-item space">
+            <img src="images/space1.jpeg" alt="Space">
+
+            <div class="overlay">
+
+                <h3>Space</h3>
+
+                <div class="overlay-buttons">
+
+                    <button class="favorite-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                    <button class="view-btn">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gallery-item space">
+            <img src="images/space2.jpeg" alt="Space">
+
+            <div class="overlay">
+
+                <h3>Space</h3>
+
+                <div class="overlay-buttons">
+
+                    <button class="favorite-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                    <button class="view-btn">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gallery-item space">
+            <img src="images/space3.jpeg" alt="Space">
+
+            <div class="overlay">
+
+                <h3>Space</h3>
+
+                <div class="overlay-buttons">
+
+                    <button class="favorite-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                    <button class="view-btn">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ================= LIGHTBOX ================= -->
+
+    <div class="lightbox">
+
+        <span class="close-btn">
+            &times;
+        </span>
+
+        <button class="prev-btn">
+            ❮
+        </button>
+
+        <img
+            class="lightbox-img"
+            src=""
+            alt="Preview">
+
+        <button class="next-btn">
+            ❯
+        </button>
+
+        <div class="lightbox-actions">
+
+            <button id="fullscreenBtn">
+                <i class="fa-solid fa-expand"></i>
+                Fullscreen
+            </button>
+
+            <a class="download-btn" download>
+                <i class="fa-solid fa-download"></i>
+                Download
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer id="footer">
+
+        <h2>Modern Image Gallery Pro</h2>
+
+        <p>
+           <p>
+Discover stunning moments, explore breathtaking visuals, and experience creativity through every image.
+</p>
+        </p>
+
+        <div class="social-icons">
+
+            <i class="fa-brands fa-github"></i>
+
+            <i class="fa-brands fa-linkedin"></i>
+
+            <i class="fa-brands fa-instagram"></i>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 GalleryPro. All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
