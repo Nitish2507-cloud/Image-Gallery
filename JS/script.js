@@ -1,22 +1,32 @@
 /* ==========================================
+   MODERN IMAGE GALLERY PRO
+   COMPLETE SCRIPT - PART 1
+========================================== */
+
+/* ==========================================
    LOADER
 ========================================== */
 
 window.addEventListener("load", () => {
 
-    const loader = document.getElementById("loader");
+    const loader =
+    document.getElementById("loader");
 
-    setTimeout(() => {
-
-        loader.style.opacity = "0";
+    if(loader){
 
         setTimeout(() => {
 
-            loader.style.display = "none";
+            loader.style.opacity = "0";
 
-        }, 500);
+            setTimeout(() => {
 
-    }, 1000);
+                loader.style.display = "none";
+
+            }, 500);
+
+        }, 1000);
+
+    }
 
 });
 
@@ -24,11 +34,11 @@ window.addEventListener("load", () => {
    ELEMENTS
 ========================================== */
 
-const filterButtons =
-document.querySelectorAll(".filter-btn");
+const body =
+document.body;
 
-const galleryItems =
-document.querySelectorAll(".gallery-item");
+const themeToggle =
+document.getElementById("themeToggle");
 
 const searchInput =
 document.getElementById("searchInput");
@@ -39,377 +49,71 @@ document.getElementById("imageCount");
 const favoriteCount =
 document.getElementById("favoriteCount");
 
-const themeToggle =
-document.getElementById("themeToggle");
+const filterButtons =
+document.querySelectorAll(".filter-btn");
 
-const body =
-document.body;
+const galleryItems =
+document.querySelectorAll(".gallery-item");
+
+const favoriteButtons =
+document.querySelectorAll(".favorite-btn");
+
+const viewButtons =
+document.querySelectorAll(".view-btn");
 
 /* ==========================================
    IMAGE COUNTER
 ========================================== */
 
-function updateImageCount() {
+function updateImageCount(){
 
     const visibleItems =
-    [...galleryItems].filter(item =>
+
+    [...galleryItems].filter(
+
+        item =>
+
         item.style.display !== "none"
+
     );
 
     imageCount.textContent =
+
     visibleItems.length;
+
 }
 
 updateImageCount();
 
 /* ==========================================
-   FILTERS
+   THEME SYSTEM
 ========================================== */
 
-filterButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        filterButtons.forEach(btn =>
-            btn.classList.remove("active")
-        );
-
-        button.classList.add("active");
-
-        const filter =
-        button.getAttribute("data-filter");
-
-        if (filter === "favorites") {
-
-            showFavorites();
-
-            return;
-        }
-
-        galleryItems.forEach(item => {
-
-            if (
-                filter === "all" ||
-                item.classList.contains(filter)
-            ) {
-
-                item.style.display = "block";
-
-            }
-
-            else {
-
-                item.style.display = "none";
-
-            }
-
-        });
-
-        updateImageCount();
-
-    });
-
-});
-
-/* ==========================================
-   SEARCH
-========================================== */
-
-searchInput.addEventListener("keyup", () => {
-
-    const searchValue =
-    searchInput.value.toLowerCase();
-
-    galleryItems.forEach(item => {
-
-        const category =
-        item.className.toLowerCase();
-
-        if (
-            category.includes(searchValue)
-        ) {
-
-            item.style.display = "block";
-
-        }
-
-        else {
-
-            item.style.display = "none";
-
-        }
-
-    });
-
-    updateImageCount();
-
-});
-
-/* ==========================================
-   LIGHTBOX
-========================================== */
-
-/* ==========================================
-   PREMIUM LIGHTBOX SYSTEM
-========================================== */
-
-const lightbox =
-document.querySelector(".lightbox");
-
-const lightboxImg =
-document.querySelector(".lightbox-img");
-
-const closeBtn =
-document.querySelector(".close-btn");
-
-const nextBtn =
-document.querySelector(".next-btn");
-
-const prevBtn =
-document.querySelector(".prev-btn");
-
-const downloadBtn =
-document.querySelector(".download-btn");
-
-const fullscreenBtn =
-document.getElementById("fullscreenBtn");
-
-const galleryItemsArray =
-document.querySelectorAll(".gallery-item");
-
-console.log("Gallery Items:", galleryItemsArray.length);
-
-document.querySelectorAll(".view-btn").forEach((btn,index)=>{
-
-    console.log("Button Found", index);
-
-});
-
-let currentIndex = 0;
-
-/* ==========================================
-   OPEN LIGHTBOX FUNCTION
-========================================== */
-
-function openLightbox(index){
-
-    currentIndex = index;
-
-    const currentImage =
-    galleryItemsArray[index]
-    .querySelector("img");
-
-    lightboxImg.src =
-    currentImage.src;
-
-    downloadBtn.href =
-    currentImage.src;
-
-    lightbox.style.display =
-    "flex";
-}
-
-/* ==========================================
-   IMAGE CLICK
-========================================== */
-
-galleryItemsArray.forEach((item,index)=>{
-
-    const img =
-    item.querySelector("img");
-
-    img.addEventListener("click",()=>{
-
-        openLightbox(index);
-
-    });
-
-});
-
-/* ==========================================
-   VIEW BUTTON CLICK
-========================================== */
-
-document.querySelectorAll(".view-btn")
-.forEach((button,index)=>{
-
-    button.onclick = function(){
-
-        console.log("View clicked", index);
-
-        currentIndex = index;
-
-        const currentImage =
-        galleryItemsArray[index]
-        .querySelector("img");
-
-        lightboxImg.src =
-        currentImage.src;
-
-        downloadBtn.href =
-        currentImage.src;
-
-        lightbox.style.display =
-        "flex";
-    };
-
-});
-/* ==========================================
-   UPDATE IMAGE
-========================================== */
-
-function showImage(){
-
-    const currentImage =
-    galleryItemsArray[currentIndex]
-    .querySelector("img");
-
-    lightboxImg.src =
-    currentImage.src;
-
-    downloadBtn.href =
-    currentImage.src;
-}
-
-/* ==========================================
-   NEXT
-========================================== */
-
-nextBtn.addEventListener("click",()=>{
-
-    currentIndex++;
-
-    if(
-        currentIndex >=
-        galleryItemsArray.length
-    ){
-        currentIndex = 0;
-    }
-
-    showImage();
-
-});
-
-/* ==========================================
-   PREVIOUS
-========================================== */
-
-prevBtn.addEventListener("click",()=>{
-
-    currentIndex--;
-
-    if(
-        currentIndex < 0
-    ){
-        currentIndex =
-        galleryItemsArray.length - 1;
-    }
-
-    showImage();
-
-});
-
-/* ==========================================
-   CLOSE
-========================================== */
-
-closeBtn.addEventListener("click",()=>{
-
-    lightbox.style.display =
-    "none";
-
-});
-
-/* ==========================================
-   CLICK OUTSIDE CLOSE
-========================================== */
-
-lightbox.addEventListener("click",(e)=>{
-
-    if(
-        e.target === lightbox
-    ){
-
-        lightbox.style.display =
-        "none";
-    }
-
-});
-
-/* ==========================================
-   KEYBOARD SUPPORT
-========================================== */
-
-document.addEventListener("keydown",(e)=>{
-
-    if(
-        lightbox.style.display === "flex"
-    ){
-
-        if(
-            e.key === "ArrowRight"
-        ){
-
-            nextBtn.click();
-        }
-
-        if(
-            e.key === "ArrowLeft"
-        ){
-
-            prevBtn.click();
-        }
-
-        if(
-            e.key === "Escape"
-        ){
-
-            lightbox.style.display =
-            "none";
-        }
-
-    }
-
-});
-
-/* ==========================================
-   FULLSCREEN
-========================================== */
-
-fullscreenBtn.addEventListener("click",()=>{
-
-    if(
-        !document.fullscreenElement
-    ){
-
-        lightboxImg.requestFullscreen();
-
-    }
-    else{
-
-        document.exitFullscreen();
-
-    }
-
-});
-
-/* ==========================================
-   THEME TOGGLE
-========================================== */
-
-function loadTheme() {
+function loadTheme(){
 
     const savedTheme =
-    localStorage.getItem("theme");
 
-    if (
+    localStorage.getItem(
+        "theme"
+    );
+
+    if(
+
         savedTheme === "light"
-    ) {
 
-        body.classList.add("light");
+    ){
 
-        themeToggle.innerHTML =
-        '<i class="fa-solid fa-sun"></i>';
+        body.classList.add(
+            "light"
+        );
+
+        if(themeToggle){
+
+            themeToggle.innerHTML =
+
+            '<i class="fa-solid fa-sun"></i>';
+
+        }
 
     }
 
@@ -417,126 +121,208 @@ function loadTheme() {
 
 loadTheme();
 
-themeToggle.addEventListener("click", () => {
+if(themeToggle){
 
-    body.classList.toggle("light");
+    themeToggle.addEventListener(
 
-    if (
-        body.classList.contains("light")
-    ) {
+        "click",
 
-        localStorage.setItem(
-            "theme",
-            "light"
-        );
+        ()=>{
 
-        themeToggle.innerHTML =
-        '<i class="fa-solid fa-sun"></i>';
-
-    }
-
-    else {
-
-        localStorage.setItem(
-            "theme",
-            "dark"
-        );
-
-        themeToggle.innerHTML =
-        '<i class="fa-solid fa-moon"></i>';
-
-    }
-
-});
-
-/* ==========================================
-   FAVORITES
-========================================== */
-
-const favoriteButtons =
-document.querySelectorAll(".favorite-btn");
-
-let favorites =
-JSON.parse(
-localStorage.getItem("favorites")
-) || [];
-
-favoriteButtons.forEach((button, index) => {
-
-    if (
-        favorites.includes(index)
-    ) {
-
-        button.classList.add("active");
-
-    }
-
-    button.addEventListener("click", e => {
-
-        e.stopPropagation();
-
-        button.classList.toggle("active");
-
-        if (
-            favorites.includes(index)
-        ) {
-
-            favorites =
-            favorites.filter(
-                fav => fav !== index
+            body.classList.toggle(
+                "light"
             );
 
+            if(
+
+                body.classList.contains(
+                    "light"
+                )
+
+            ){
+
+                localStorage.setItem(
+
+                    "theme",
+
+                    "light"
+
+                );
+
+                themeToggle.innerHTML =
+
+                '<i class="fa-solid fa-sun"></i>';
+
+            }
+
+            else{
+
+                localStorage.setItem(
+
+                    "theme",
+
+                    "dark"
+
+                );
+
+                themeToggle.innerHTML =
+
+                '<i class="fa-solid fa-moon"></i>';
+
+            }
+
         }
 
-        else {
+    );
 
-            favorites.push(index);
-
-        }
-
-        localStorage.setItem(
-            "favorites",
-            JSON.stringify(favorites)
-        );
-
-        updateFavoriteCount();
-
-    });
-
-});
+}
 
 /* ==========================================
-   FAVORITE COUNTER
+   FAVORITES SYSTEM
 ========================================== */
 
-function updateFavoriteCount() {
+let favorites =
+
+JSON.parse(
+
+localStorage.getItem(
+    "favorites"
+)
+
+) || [];
+
+function saveFavorites(){
+
+    localStorage.setItem(
+
+        "favorites",
+
+        JSON.stringify(
+            favorites
+        )
+
+    );
+
+}
+
+function updateFavoriteCount(){
 
     favoriteCount.textContent =
+
     favorites.length;
 
 }
 
+favoriteButtons.forEach(
+
+(button,index)=>{
+
+    if(
+
+        favorites.includes(index)
+
+    ){
+
+        button.classList.add(
+            "active"
+        );
+
+    }
+
+    button.addEventListener(
+
+        "click",
+
+        (e)=>{
+
+            e.preventDefault();
+
+            e.stopPropagation();
+
+            if(
+
+                favorites.includes(index)
+
+            ){
+
+                favorites =
+
+                favorites.filter(
+
+                    item =>
+                    item !== index
+
+                );
+
+                button.classList.remove(
+                    "active"
+                );
+
+            }
+
+            else{
+
+                favorites.push(index);
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+            saveFavorites();
+
+            updateFavoriteCount();
+
+        }
+
+    );
+
+}
+
+);
+
 updateFavoriteCount();
 
 /* ==========================================
-   SHOW FAVORITES
+   FILTER SYSTEM
 ========================================== */
 
-function showFavorites() {
+function showAllImages(){
 
     galleryItems.forEach(
-        (item, index) => {
 
-            if (
+        item=>{
+
+            item.style.display =
+            "block";
+
+        }
+
+    );
+
+    updateImageCount();
+
+}
+
+function showFavorites(){
+
+    galleryItems.forEach(
+
+        (item,index)=>{
+
+            if(
+
                 favorites.includes(index)
-            ) {
+
+            ){
 
                 item.style.display =
                 "block";
 
             }
 
-            else {
+            else{
 
                 item.style.display =
                 "none";
@@ -544,100 +330,685 @@ function showFavorites() {
             }
 
         }
+
     );
 
     updateImageCount();
 
 }
-
 /* ==========================================
-   SCROLL REVEAL
+   FILTER BUTTON EVENTS
 ========================================== */
 
-const observer =
-new IntersectionObserver(
+filterButtons.forEach(
 
-(entries) => {
+button=>{
 
-    entries.forEach(entry => {
+    button.addEventListener(
 
-        if (
-            entry.isIntersecting
-        ) {
+        "click",
 
-            entry.target.classList.add(
-                "show"
+        ()=>{
+
+            filterButtons.forEach(
+
+                btn=>{
+
+                    btn.classList.remove(
+                        "active"
+                    );
+
+                }
+
             );
+
+            button.classList.add(
+                "active"
+            );
+
+            const filter =
+
+            button.getAttribute(
+                "data-filter"
+            );
+
+            if(
+
+                filter === "favorites"
+
+            ){
+
+                showFavorites();
+
+                return;
+
+            }
+
+            galleryItems.forEach(
+
+                item=>{
+
+                    if(
+
+                        filter === "all" ||
+
+                        item.classList.contains(
+                            filter
+                        )
+
+                    ){
+
+                        item.style.display =
+                        "block";
+
+                    }
+
+                    else{
+
+                        item.style.display =
+                        "none";
+
+                    }
+
+                }
+
+            );
+
+            updateImageCount();
 
         }
 
-    });
-
-},
-
-{
-    threshold: 0.2
-}
-
-);
-
-galleryItems.forEach(item => {
-
-    observer.observe(item);
+    );
 
 });
 
 /* ==========================================
-   CLICK OUTSIDE LIGHTBOX
+   SEARCH SYSTEM
 ========================================== */
 
-lightbox.addEventListener("click", e => {
+if(searchInput){
 
-    if (
-        e.target === lightbox
-    ) {
+    searchInput.addEventListener(
+
+        "keyup",
+
+        ()=>{
+
+            const value =
+
+            searchInput.value
+            .toLowerCase()
+            .trim();
+
+            galleryItems.forEach(
+
+                item=>{
+
+                    const category =
+
+                    item.className
+                    .toLowerCase();
+
+                    if(
+
+                        category.includes(
+                            value
+                        )
+
+                    ){
+
+                        item.style.display =
+                        "block";
+
+                    }
+
+                    else{
+
+                        item.style.display =
+                        "none";
+
+                    }
+
+                }
+
+            );
+
+            updateImageCount();
+
+        }
+
+    );
+
+}
+
+/* ==========================================
+   LIGHTBOX ELEMENTS
+========================================== */
+
+const lightbox =
+document.querySelector(
+    ".lightbox"
+);
+
+const lightboxImg =
+document.querySelector(
+    ".lightbox-img"
+);
+
+const closeBtn =
+document.querySelector(
+    ".close-btn"
+);
+
+const nextBtn =
+document.querySelector(
+    ".next-btn"
+);
+
+const prevBtn =
+document.querySelector(
+    ".prev-btn"
+);
+
+const downloadBtn =
+document.querySelector(
+    ".download-btn"
+);
+
+const fullscreenBtn =
+document.getElementById(
+    "fullscreenBtn"
+);
+
+let currentIndex = 0;
+
+/* ==========================================
+   OPEN LIGHTBOX
+========================================== */
+
+function openLightbox(index){
+
+    currentIndex = index;
+
+    const image =
+
+    galleryItems[index]
+    .querySelector("img");
+
+    lightboxImg.src =
+    image.src;
+
+    downloadBtn.href =
+    image.src;
+
+    lightbox.style.display =
+    "flex";
+
+}
+
+/* ==========================================
+   IMAGE CLICK
+========================================== */
+
+galleryItems.forEach(
+
+(item,index)=>{
+
+    const image =
+
+    item.querySelector("img");
+
+    image.addEventListener(
+
+        "click",
+
+        ()=>{
+
+            openLightbox(
+                index
+            );
+
+        }
+
+    );
+
+}
+
+);
+
+/* ==========================================
+   VIEW BUTTON
+========================================== */
+
+viewButtons.forEach(
+
+(button,index)=>{
+
+    button.addEventListener(
+
+        "click",
+
+        (e)=>{
+
+            e.preventDefault();
+
+            e.stopPropagation();
+
+            openLightbox(
+                index
+            );
+
+        }
+
+    );
+
+}
+);
+
+/* ==========================================
+   UPDATE IMAGE
+========================================== */
+
+function showImage(){
+
+    const image =
+
+    galleryItems[currentIndex]
+    .querySelector("img");
+
+    lightboxImg.src =
+    image.src;
+
+    downloadBtn.href =
+    image.src;
+
+}
+/* ==========================================
+   NEXT IMAGE
+========================================== */
+
+nextBtn.addEventListener(
+
+    "click",
+
+    ()=>{
+
+        currentIndex++;
+
+        if(
+
+            currentIndex >=
+            galleryItems.length
+
+        ){
+
+            currentIndex = 0;
+
+        }
+
+        showImage();
+
+    }
+
+);
+
+/* ==========================================
+   PREVIOUS IMAGE
+========================================== */
+
+prevBtn.addEventListener(
+
+    "click",
+
+    ()=>{
+
+        currentIndex--;
+
+        if(
+
+            currentIndex < 0
+
+        ){
+
+            currentIndex =
+
+            galleryItems.length - 1;
+
+        }
+
+        showImage();
+
+    }
+
+);
+
+/* ==========================================
+   CLOSE LIGHTBOX
+========================================== */
+
+closeBtn.addEventListener(
+
+    "click",
+
+    ()=>{
 
         lightbox.style.display =
         "none";
 
     }
 
-});
+);
 
 /* ==========================================
-   SMOOTH HERO BUTTONS
+   CLICK OUTSIDE TO CLOSE
+========================================== */
+
+lightbox.addEventListener(
+
+    "click",
+
+    (e)=>{
+
+        if(
+
+            e.target === lightbox
+
+        ){
+
+            lightbox.style.display =
+            "none";
+
+        }
+
+    }
+
+);
+
+/* ==========================================
+   FULLSCREEN
+========================================== */
+
+fullscreenBtn.addEventListener(
+
+    "click",
+
+    ()=>{
+
+        if(
+
+            !document.fullscreenElement
+
+        ){
+
+            lightboxImg
+            .requestFullscreen();
+
+        }
+
+        else{
+
+            document
+            .exitFullscreen();
+
+        }
+
+    }
+
+);
+
+/* ==========================================
+   KEYBOARD SUPPORT
+========================================== */
+
+document.addEventListener(
+
+    "keydown",
+
+    (e)=>{
+
+        if(
+
+            lightbox.style.display
+            !== "flex"
+
+        ){
+
+            return;
+
+        }
+
+        if(
+
+            e.key ===
+            "ArrowRight"
+
+        ){
+
+            nextBtn.click();
+
+        }
+
+        if(
+
+            e.key ===
+            "ArrowLeft"
+
+        ){
+
+            prevBtn.click();
+
+        }
+
+        if(
+
+            e.key ===
+            "Escape"
+
+        ){
+
+            lightbox.style.display =
+            "none";
+
+        }
+
+    }
+
+);
+
+/* ==========================================
+   SCROLL REVEAL
+========================================== */
+
+const observer =
+
+new IntersectionObserver(
+
+(entries)=>{
+
+    entries.forEach(
+
+        entry=>{
+
+            if(
+
+                entry.isIntersecting
+
+            ){
+
+                entry.target
+                .classList.add(
+                    "show"
+                );
+
+            }
+
+        }
+
+    );
+
+},
+
+{
+    threshold:0.15
+}
+
+);
+
+galleryItems.forEach(
+
+item=>{
+
+    observer.observe(
+        item
+    );
+
+}
+
+);
+
+/* ==========================================
+   SMOOTH SCROLL
 ========================================== */
 
 document
-.querySelectorAll('a[href^="#"]')
-.forEach(anchor => {
+.querySelectorAll(
+'a[href^="#"]'
+)
+.forEach(
+
+anchor=>{
 
     anchor.addEventListener(
+
         "click",
-        function (e) {
+
+        function(e){
 
             e.preventDefault();
 
             const target =
+
             document.querySelector(
-                this.getAttribute("href")
+
+                this.getAttribute(
+                    "href"
+                )
+
             );
 
-            target.scrollIntoView({
+            if(target){
 
-                behavior: "smooth"
+                target.scrollIntoView({
 
-            });
+                    behavior:"smooth"
+
+                });
+
+            }
 
         }
+
     );
 
-});
+}
+
+);
 
 /* ==========================================
-   END OF FILE
+   SOCIAL LINKS
 ========================================== */
 
+const githubIcon =
+document.querySelector(
+".fa-github"
+);
+
+const linkedinIcon =
+document.querySelector(
+".fa-linkedin"
+);
+
+const instagramIcon =
+document.querySelector(
+".fa-instagram"
+);
+
+if(githubIcon){
+
+    githubIcon.addEventListener(
+
+        "click",
+
+        ()=>{
+
+            window.open(
+
+                "https://github.com/Nitish2507-cloud",
+
+                "_blank"
+
+            );
+
+        }
+
+    );
+
+}
+
+if(linkedinIcon){
+
+    linkedinIcon.addEventListener(
+
+        "click",
+
+        ()=>{
+
+            window.open(
+
+                "https://www.linkedin.com/",
+
+                "_blank"
+
+            );
+
+        }
+
+    );
+
+}
+
+if(instagramIcon){
+
+    instagramIcon.addEventListener(
+
+        "click",
+
+        ()=>{
+
+            window.open(
+
+                "https://www.instagram.com/",
+
+                "_blank"
+
+            );
+
+        }
+
+    );
+
+}
+
+/* ==========================================
+   INITIALIZE
+========================================== */
+
+updateImageCount();
+
+updateFavoriteCount();
+
 console.log(
+
 "Modern Image Gallery Pro Loaded Successfully 🚀"
+
 );

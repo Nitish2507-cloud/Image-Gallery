@@ -31,3 +31,7 @@ ImageGalleryPro/
 ## Author
 
 Nitish
+
+## Preview
+
+![Gallery Preview](assets/preview.png)
